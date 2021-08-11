@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmln:th="http://www.thymeleaf.org">
+
+
+
+<body>
+
+	<nav th:fragment="paginator" class="pt-3">
+			<ul class="pagination d-flex justify-content-around text-uppercase">
+				<div>
+					<li>
+						<span th:if="${page.first}">primera</span>
+						<a th:if="${not page.first}" th:href="@{${page.url}(page=0)}">primera</a>
+					</li>
+				</div>
+				<div class="d-flex flex-row">
+					<li class="mx-1">
+						<span th:if="${not page.hasPrevius}">anterior</span>
+						<a th:if="${page.hasPrevius}" th:href="@{${page.url}(page=${page.paginaActual - 2 })}">anterior</a>
+					</li>
+					<li class="mx-1"> 
+						<span th:if="${not page.hasNext}">siguiente</span>
+						<a th:if="${page.hasNext}" th:href="@{${page.url}(page=${page.paginaActual})}">siguiente</a>
+					</li>
+				</div>
+				<div class="d-flex flex-row text-secondary">
+					<li th:each="item: ${page.paginas}" class="mx-2">
+						<span th:if="${item.actual}" th:text="${item.numero}"></span>
+						<a th:if="${not item.actual}" th:href="@{${page.url}(page=${item.numero - 1 })}" th:text="${item.numero}" class="text-dark"></a>
+					</li>
+				</div>
+				<div>
+					<li>
+						<span th:if="${page.last}">ultimo</span>
+						<a th:if="${not page.last}" th:href="@{${page.url}(page=${page.totalPaginas-1})}">ultimo</a>
+					</li>
+				</div>
+				
+				
+				
+			</ul>
+	</nav>
+
+
+
+
+
+
+
+
+
+		
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
+		integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"
+		integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+		crossorigin="anonymous"></script>
+</body>
+
+
+</html>
